@@ -11,6 +11,7 @@
  * @method   printDetails
  */
 
+
   /**
    * Returns a string of all of the spell's details.
    * The format doesn't matter, as long as it contains the spell name, cost, and description.
@@ -43,6 +44,25 @@
  * @property {number} damage
  * @property {string} description
  */
+function Spell (name, cost, description){
+  this.name = name;
+  this.cost = cost;
+  this.description = description;
+  this.getDetails = function () {
+    return this.name + " " + this.cost + " " +this.description;
+
+  };
+}
+
+function DamageSpell  (name, cost, damage, description){
+  Spell.call(name, cost, damage, description);
+}
+
+DamageSpell.prototype = Object.create(Spell.prototype,{
+  constructor: DamageSpell
+});
+
+
 
 /**
  * Now that you've created some spells, let's create
@@ -108,3 +128,9 @@
    * @param  {Spellcaster} target         The spell target to be inflicted.
    * @return {boolean}                    Whether the spell was successfully cast.
    */
+
+
+
+/*var DamageSpell = new Spell ('DamageSpell')};*/
+/*Spellcaster.prototype. = function(){
+};*/
