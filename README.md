@@ -72,17 +72,31 @@ Returns a string of all of the spell's details.
 The format doesn't matter, as long as it contains the spell name, cost, and description.
 
 
+
+
+
+
+
+
 # DamageSpell(name, cost, damage, description)
 A spell that deals damage.
 We want to keep this code DRY (Don't Repeat Yourself).
 
 So you should use `Spell.call()` to assign the spell name, cost, and description.
 
+
+
+
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
 
 In addition, you will also want to assign `DamageSpell.prototype`
 a value so that it inherits from `Spell`.
 Make sure to call this OUTSIDE of the function declaration.
+
+
+
+
+
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype
 
