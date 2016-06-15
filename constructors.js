@@ -110,15 +110,19 @@ function Spellcaster (name, health, mana){
       this.health -= damage;
     }
   };
+
   this.spendMana = function (cost){
-    if(this.mana>0){
+    if(cost<=this.mana){
       this.mana = this.mana - cost;
       return true;
-    }else if(this.mana<=0){
+    }else {
       return false;
     }
   };
 }
+
+
+
 
   /**
    * @method inflictDamage
@@ -140,6 +144,42 @@ function Spellcaster (name, health, mana){
    * @param  {number} cost      The amount of mana to spend.
    * @return {boolean} success  Whether mana was successfully spent.
    */
+Spellcaster.prototype.invoke = function(spell, target){
+  //Spell.call(this, name, cost, description);
+
+  if(spell instanceof DamageSpell && target instanceof Spellcaster===false){
+
+              return false;
+  }
+
+
+
+  if(spell instanceof DamageSpell && target instanceof Spellcaster){
+
+      if(target instanceof Spellcaster){
+          if(this.spendMana(spell.cost)){
+                  target.inflictDamage(spell.damage);
+                  return true;
+          }
+          else{
+                  return false;
+          }
+
+        }
+  }
+
+
+  if(spell instanceof Spell && !( spell instanceof DamageSpell) ){
+      if(this.spendMana(spell.cost)){
+              return true;
+      }else{
+              return false;
+      }
+  }
+  else {
+              return false;
+  }
+};
 
   /**
    * @method invoke
@@ -167,6 +207,7 @@ function Spellcaster (name, health, mana){
    * @param  {Spellcaster} target         The spell target to be inflicted.
    * @return {boolean}                    Whether the spell was successfully cast.
    */
+
 
 
 
